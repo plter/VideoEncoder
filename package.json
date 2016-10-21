@@ -1,0 +1,12 @@
+{
+  "name": "video-encoder",
+  "version": "0.0.1",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "jquery": "^1.11.3",
+    "jqueryui": "^1.11.1"
+  }
+}
