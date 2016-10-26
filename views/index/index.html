@@ -2,14 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>视频转码工具</title>
 
-    <link rel="stylesheet" href="../../node_modules/jqueryui/jquery-ui.min.css">
-    <link rel="stylesheet" href="../../node_modules/jqueryui/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="../../libs/jquery-ui-1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../libs/jquery-ui-1.12.1/jquery-ui.theme.custom.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<div id="buttons-container"></div>
-<div id="list-container"></div>
+<div class="container" id="buttons-container">
+    <button id="btn-open-video-files">打开文件</button>
+    <button id="btn-start-encode">开始转码</button>
+
+    <span id="select-save-path-controls-container">
+        <input type="text" id="path-for-saving-files">
+        <button id="btn-select-output-dir">选择输出目录</button>
+    </span>
+</div>
+<div class="container" id="list-container">
+    Drag files in
+</div>
+<input type="file" id="file-filed-for-open-videos" multiple="multiple" style="display: none;">
 
 <script src="index.js"></script>
 </body>

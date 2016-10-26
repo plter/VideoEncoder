@@ -1,7 +1,8 @@
 /**
  * Created by plter on 10/21/16.
  */
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow} = require('electron');
+require("./ipcApis/main/FileDialog");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -15,7 +16,7 @@ function createWindow() {
     win.loadURL(`file://${__dirname}/views/index/index.html`)
 
     // Open the DevTools.
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 
     // Emitted when the window is closed.
     win.on('closed', () => {

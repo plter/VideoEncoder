@@ -4,9 +4,5 @@
   "main": "main.js",
   "scripts": {
     "start": "electron ."
-  },
-  "dependencies": {
-    "jquery": "^1.11.3",
-    "jqueryui": "^1.11.1"
   }
 }
