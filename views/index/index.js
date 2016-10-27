@@ -8,20 +8,33 @@ require("../../libs/jquery-ui-1.12.1/jquery-ui.min");
 const List = require("./List");
 const ListItem = require("./ListItem");
 const FileDialog = require('../../ipcApis/renderer/FileDialog');
+const ExportSizeSelectOption = require("./ExportSizeSelectOption");
 
 class Index {
 
     constructor() {
         document.title = "视频转码工具";
 
+
+        this.initData();
         this.renderUI();
         this.addListeners();
+    }
+
+    initData() {
+        this._exportSizeSelectOptions = [
+            new ExportSizeSelectOption("原始尺寸", null),
+            new ExportSizeSelectOption("1280 x 800", "1280*800"),
+            new ExportSizeSelectOption("1280 x 720", "1280*720")
+        ];
     }
 
     renderUI() {
         $("button").button();
 
         this.pathForSavingFiles = $("#path-for-saving-files");
+        this.exportSizeSelect = $("#export-size-select");
+        this._exportSizeSelectOptions.forEach(item=>this.exportSizeSelect.append(item.htmlNode));
     }
 
     addListeners() {
@@ -72,6 +85,10 @@ class Index {
                 self.pathForSavingFiles.val(path);
             }
         });
+
+        this.exportSizeSelect.change(function (e) {
+            console.log(self.getCurrentSelectedExportSizeOption());
+        });
     }
 
     createListWithFiles(files) {
@@ -89,6 +106,10 @@ class Index {
 
     getCurrentPathForSaving() {
         return this.pathForSavingFiles.val();
+    }
+
+    getCurrentSelectedExportSizeOption() {
+        return this._exportSizeSelectOptions[this.exportSizeSelect[0].selectedIndex];
     }
 }
 

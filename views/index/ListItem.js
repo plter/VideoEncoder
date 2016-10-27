@@ -56,12 +56,22 @@ class ListItem {
      * Start encode this video
      */
     startEncode() {
-        var process = child_process.execFile("/usr/local/bin/ffmpeg", [
-            "-y",
-            "-i",
-            this.file.path,
-            `${indexedApp.getCurrentPathForSaving()}/${this._fileNameWithoutExtension}.mp4`
-        ]);
+
+        var option = indexedApp.getCurrentSelectedExportSizeOption();
+
+        var cmdArgs = [];
+        cmdArgs.push("-y");
+        cmdArgs.push("-i");
+        cmdArgs.push(this.file.path);
+        if (option.ffmpegArg) {
+            cmdArgs.push("-s");
+            cmdArgs.push(option.ffmpegArg);
+        }
+        cmdArgs.push(`${indexedApp.getCurrentPathForSaving()}/${this._fileNameWithoutExtension}.mp4`);
+
+        console.log(cmdArgs);
+
+        var process = child_process.execFile("/usr/local/bin/ffmpeg", cmdArgs);
         process.stderr.on("data", data=> {
 
             // console.log(data);
