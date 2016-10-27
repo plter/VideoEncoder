@@ -54,7 +54,7 @@ class Index {
 
         $("#btn-start-encode").click(function (e) {
             if (self.pathForSavingFiles.val() == "") {
-                alert("请选择输出目录");
+                alert("请选择导出目录");
                 return;
             }
 

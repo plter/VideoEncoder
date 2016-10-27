@@ -9,5 +9,9 @@ body {
 
 input[type='text'] {
     font-size: 12pt;
-    width: 200px;
+    width: 150px;
+}
+
+#btn-start-encode {
+    float: right;
 }
