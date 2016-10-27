@@ -1,0 +1,17 @@
+
+body {
+    margin: 0;
+}
+
+.container {
+    margin: 10px 10px 0 10px;
+}
+
+input[type='text'] {
+    font-size: 12pt;
+    width: 150px;
+}
+
+#btn-start-encode {
+    float: right;
+}
