@@ -11,6 +11,7 @@ class ListItem {
     constructor(file) {
         this._file = file;
         this._fileNameWithoutExtension = this._file.name.substring(0, this._file.name.lastIndexOf("."));
+        this._videoLength = 0;
 
         this._regExpVideoLength = /Duration: (\d{2}):(\d{2}):(\d{2})\.(\d{2}),/;
         this._regExpCurrentTime = /time=(\d{2}):(\d{2}):(\d{2})\.(\d{2})/;
@@ -79,14 +80,21 @@ class ListItem {
             let result = this._regExpCurrentTime.exec(data);
             if (result) {
                 var currentTime = this.getMsByRegExpResult(result);
-                if (currentTime && this._videoLength) {
-                    this._progressBarText.html(Math.round(currentTime / this._videoLength * 100) + "%");
-                    this._progressBar.progressbar({value: currentTime, max: this._videoLength});
+                if (currentTime) {
+                    if (this._videoLength) {
+                        this._progressBarText.html(`${Math.round(currentTime / this._videoLength * 100)}%`);
+                        this._progressBar.progressbar({value: currentTime, max: this._videoLength});
+                    } else {
+                        this._progressBarText.html(`${result[1]}:${result[2]}:${result[3]}`);
+                    }
                 }
             }
         });
         process.on('close', (code) => {
             console.log(`child process exited with code ${code}`);
+            if (!code) {
+                this._progressBarText.html("完成");
+            }
         });
     }
 
